@@ -28,9 +28,16 @@ function MonteCarloSim(iterations)
          0, 0, 0, 0, 120/1296];
     e1 = eye(5,1);
     e5 = [0;0;0;0;1];
-    probability = zeros(1, max(result));
-    for k = 1:max(result)
-        probability(k) = ((e1')*(A^k)*e5)*(iterations/10);
+    
+    fprintf('size of vector: %d\n', size(min(result):max(result), 2));
+    
+    probability = zeros(1, size(min(result):max(result), 2));
+    
+    fprintf('Size of prob vector: %d\n', size(probability, 2));
+    for k = min(result):max(result)
+        probability(k) = ((e1')*(A^k)*e5)*(iterations);
     end
-    histogram(probability, 'Facecolor', 'r'); 
+    plot(probability, 'r', 'Linewidth', 2.5);
+    
+
 end
